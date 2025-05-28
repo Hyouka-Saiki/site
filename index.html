@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sabores de Belém</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to right, #f0fdf4, #ffffff);
+      color: #333;
+    }
+
+    header {
+      background: linear-gradient(90deg, #004d00, #008000);
+      padding: 25px 40px;
+      color: white;
+      text-align: center;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    header h1 {
+      font-size: 36px;
+      letter-spacing: 1px;
+    }
+
+    .intro {
+      padding: 60px 20px;
+      max-width: 1000px;
+      margin: 30px auto;
+      text-align: center;
+      font-size: 18px;
+      line-height: 1.8;
+      color: white;
+      background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+        url("https://images.app.goo.gl/E8GHxpZkiK8VUGjq8");
+      background-size: cover;
+      background-position: center;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      padding: 40px 20px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .card {
+      background-color: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+    }
+
+    .card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover img {
+      transform: scale(1.15);
+    }
+
+    .card-content {
+      padding: 15px;
+      text-align: center;
+    }
+
+    .card-content h3 {
+      font-size: 20px;
+      margin-bottom: 12px;
+      color: #004d00;
+    }
+
+    .card-content button {
+      background-color: #008000;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 25px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s ease;
+    }
+
+    .card-content button:hover {
+      background-color: #006400;
+    }
+
+    footer {
+      background-color: #004d00;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      font-size: 16px;
+      margin-top: 50px;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Sabores de Belém do Pará</h1>
+</header>
+
+<section class="intro">
+  <p>Belém do Pará é um tesouro gastronômico da Amazônia. Com uma culinária cheia de tradição indígena e ingredientes únicos como tucupi, jambu e açaí, os pratos paraenses encantam pelo sabor e originalidade. Explore abaixo 10 receitas típicas que representam a riqueza da cozinha de Belém!</p>
+</section>
+
+<section class="grid">
+
+  <div class="card">
+    <img src="https://www.receiteria.com.br/wp-content/uploads/pato-no-tucupi-capa.jpg" alt="Pato no Tucupi">
+    <div class="card-content">
+      <h3>Pato no Tucupi</h3>
+      <button onclick="location.href='pato-no-tucupi.html'">Ver Receita</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="https://www.saboresajinomoto.com.br/uploads/images/recipes/tacaca.jpg" alt="Tacacá">
+    <div class="card-content">
+      <h3>Tacacá</h3>
+      <button onclick="location.href='tacaca.html'">Ver Receita</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="https://tse1.mm.bing.net/th/id/OIP.2QDRpySfhB_sr_52qzBqSAHaEK?cb=iwp2&rs=1&pid=ImgDetMain" alt="Maniçoba">
+    <div class="card-content">
+      <h3>Maniçoba</h3>
+      <button onclick="location.href='manicoba.html'">Ver Receita</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="https://th.bing.com/th/id/R.8a0ae6b514d3709adaad33e95774b62d?rik=iwle2KlkaEjwiw&pid=ImgRaw&r=0" alt="Caruru">
+    <div class="card-content">
+      <h3>Caruru</h3>
+      <button onclick="location.href='caruru.html'">Ver Receita</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="https://cdn0.tudoreceitas.com/pt/posts/8/1/4/pirarucu_a_casaca_3418_paso_7_600.webp" alt="Pirarucu de Casaca">
+    <div class="card-content">
+      <h3>Pirarucu de Casaca</h3>
+      <button onclick="location.href='pirarucu.html'">Ver Receita</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="https://bing.com/th?id=OSK.6ad294a330700c1ce6e84a4212760e79" alt="Bolo de Macaxeira">
+    <div class="card-content">
+      <h3>Bolo de Macaxeira</h3>
+      <button onclick="location.href='bolo-de-macaxeira.html'">Ver Receita</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="https://www.receiteria.com.br/wp-content/uploads/mingau-de-tapioca.jpg" alt="Mingau de Tapioca">
+    <div class="card-content">
+      <h3>Mingau de Tapioca</h3>
+      <button onclick="location.href='mingau.html'">Ver Receita</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="https://www.guiadasemana.com.br/contentFiles/image/2023/04/FEA/principal/70133_w840h0_1682356054receita-cuscuz-tradicional-ingredientes-2.jpg" alt="Cuscuz Paraense">
+    <div class="card-content">
+      <h3>Cuscuz Paraense</h3>
+      <button onclick="location.href='cuscuz.html'">Ver Receita</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="https://tse3.mm.bing.net/th/id/OIP.QKdjC-JqbYraF8bIlblBvQHaE7?cb=iwp2&rs=1&pid=ImgDetMain" alt="Bolinho de Pirarucu">
+    <div class="card-content">
+      <h3>Bolinho de Pirarucu</h3>
+      <button onclick="location.href='bolinho.html'">Ver Receita</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="https://www.comidaereceitas.com.br/wp-content/uploads/2008/08/Para1-780x520.jpg" alt="Arroz Paraense">
+    <div class="card-content">
+      <h3>Arroz Paraense</h3>
+      <button onclick="location.href='arroz-paraense.html'">Ver Receita</button>
+    </div>
+  </div>
+
+</section>
+
+<footer>
+  &copy; 2025 Sabores de Belém | Todos os direitos reservados
+</footer>
+
+</body>
+</html>
