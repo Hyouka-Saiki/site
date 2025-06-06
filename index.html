@@ -29,8 +29,6 @@
       border: 2px solid #0ff;
       color: white;
       cursor: pointer;
-      left: 50%;
-      top: 50%;
       font-weight: 700;
     }
 
@@ -59,28 +57,34 @@
     /* Container do carrossel */
     .slider-container {
       position: relative;
-      width: 300px;
-      /* Defina o tamanho que desejar */
-      height: 450px;
-      /* Ajuste a altura para manter proporção */
+      width: 400px;
+      height: 550px;
       margin: 0 auto;
       overflow: hidden;
       border-radius: 20px;
       background-color: #222;
     }
 
-    /* Imagem do carrossel */
-    #slider {
+    /* Imagens do carrossel */
+    #imgAtual,
+    #imgProxima {
+      position: absolute;
+      top: 0;
       width: 100%;
       height: 100%;
       object-fit: contain;
-      /* mantém proporção e mostra a imagem inteira */
-      position: absolute;
-      top: 0;
-      left: 0;
-      opacity: 1;
-      transition: opacity 1s ease-in-out;
       user-select: none;
+      transition: left 0.8s ease-in-out;
+    }
+
+    #imgAtual {
+      left: 0;
+      z-index: 2;
+    }
+
+    #imgProxima {
+      left: 100%;
+      z-index: 1;
     }
 
     .spotify-embed {
@@ -143,7 +147,8 @@
     </div>
 
     <div class="slider-container">
-      <img id="slider" src="foto1.jpg" alt="Foto romântica" draggable="false" />
+      <img id="imgAtual" src="foto1.jpg" alt="Foto romântica" draggable="false" />
+      <img id="imgProxima" src="" alt="Próxima foto" draggable="false" />
     </div>
 
     <h3>💗 Eu te amo há:</h3>
@@ -197,20 +202,57 @@
     setInterval(atualizarTempo, 1000);
     atualizarTempo();
 
-    // Carrossel com fade para trocar imagens
-    const imagens = ['foto1.jpg', 'foto2.jpeg', 'foto3.webp', 'foto4.jpeg', 'foto5.jpeg', 'foto6.jpeg', 'foto7.jpeg', 'foto8.jpeg', 'foto9.jpeg'
+    // Carrossel com deslize suave corrigido
+    const imagens = [
+      'foto1.jpg', 'foto2.jpeg', 'foto3.webp', 'foto4.jpeg',
+      'foto5.jpeg', 'foto6.jpeg', 'foto7.jpeg', 'foto8.jpeg', 'foto9.jpeg'
     ];
-    const slider = document.getElementById('slider');
-    let index = 0;
+    const imgAtual = document.getElementById('imgAtual');
+    const imgProxima = document.getElementById('imgProxima');
+    let indexAtual = 0;
+    let animando = false;
 
-    setInterval(() => {
-      slider.style.opacity = 0; // fade out
-      setTimeout(() => {
-        index = (index + 1) % imagens.length;
-        slider.src = imagens[index];
-        slider.style.opacity = 1; // fade in
-      }, 1000);
-    }, 3000);
+    function trocarImagem() {
+      if (animando) return;
+      animando = true;
+
+      const indexProximo = (indexAtual + 1) % imagens.length;
+
+      // Posiciona imgProxima fora da tela à direita, já com src da próxima imagem
+      imgProxima.src = imagens[indexProximo];
+      imgProxima.style.transition = 'none'; // remove transição para reposicionar instantaneamente
+      imgProxima.style.left = '100%';
+
+      // Força reflow para garantir que o browser registre o left = 100%
+      void imgProxima.offsetWidth;
+
+      // Ativa a transição para deslizar as imagens
+      imgProxima.style.transition = 'left 0.8s ease-in-out';
+      imgAtual.style.transition = 'left 0.8s ease-in-out';
+
+      // Move imgAtual para a esquerda e imgProxima para o centro
+      imgAtual.style.left = '-100%';
+      imgProxima.style.left = '0';
+
+      // Depois que a transição acabar, resetamos os elementos para próxima troca
+      imgProxima.addEventListener('transitionend', function handler() {
+        // Atualiza imagem atual para próxima
+        imgAtual.src = imgProxima.src;
+
+        // Reseta posições sem transição para não "piscar"
+        imgAtual.style.transition = 'none';
+        imgProxima.style.transition = 'none';
+
+        imgAtual.style.left = '0';
+        imgProxima.style.left = '100%';
+
+        // Remove o event listener para não acumular
+        imgProxima.removeEventListener('transitionend', handler);
+
+        indexAtual = indexProximo;
+        animando = false;
+      });
+    }
 
     // Botão de entrada
     document.querySelector('.start-button').addEventListener('click', () => {
@@ -218,6 +260,11 @@
       document.querySelector('.content').style.display = 'block';
 
       iniciarCoracoes();
+
+      setTimeout(() => {
+        trocarImagem();
+        setInterval(trocarImagem, 3800);
+      }, 0);
     });
   </script>
 </body>
